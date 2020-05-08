@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "gulp": "^4.0.2",
+    "jquery": "^3.5.1",
     "save-dev": "0.0.1-security"
   },
   "devDependencies": {

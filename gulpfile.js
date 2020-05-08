@@ -42,6 +42,7 @@ const srcPath = {
   js: 'src/js/*.js',
   img: 'src/img/**/*',
   php: './**/*.php',
+  html: './**/*.php',
 }
 
 //出力先パス
@@ -133,11 +134,8 @@ const browserSyncFunc = () => {
   browserSync.init(browserSyncOption);
 }
 const browserSyncOption = {
-  proxy: 'http://localhost/template/gulp-template/',       //環境によって変更する
+  proxy: 'http://localhost/',       //環境によって変更する
   open: true,
-  watchOptions: {
-    debounceDelay: 1000
-  },
   reloadOnRestart: true,
 }
 
@@ -153,6 +151,7 @@ const watchFiles = () => {
   watch(srcPath.js, series(jsBabel, browserSyncReload))
   watch(srcPath.img, series(imgImagemin, browserSyncReload))
   watch(srcPath.php, series(browserSyncReload))
+  watch(srcPath.html, series(browserSyncReload))
 }
 
 exports.default = series(series(cssSass, jsBabel, imgImagemin), parallel(watchFiles, browserSyncFunc));
