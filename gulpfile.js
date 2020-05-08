@@ -42,7 +42,7 @@ const srcPath = {
   js: 'src/js/*.js',
   img: 'src/img/**/*',
   php: './**/*.php',
-  html: './**/*.php',
+  html: './**/*.html',
 }
 
 //出力先パス
