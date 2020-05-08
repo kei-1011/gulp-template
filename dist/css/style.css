@@ -113,4 +113,10 @@ body {
   color: #333;
 }
 
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

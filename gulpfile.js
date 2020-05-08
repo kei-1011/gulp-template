@@ -1,3 +1,9 @@
+/*
+src 参照元を指定
+dest 出力さきを指定
+watch ファイル監視
+series(直列処理)とparallel(並列処理)
+*/
 const { src, dest, watch, series, parallel } = require('gulp');
 
 //scss
@@ -128,7 +134,7 @@ const imgImagemin = () => {
 }
 
 
-//ローカルサーバー立ち上げ、ファイル監視と自動リロード
+//ローカルサーバー立ち上げ
 const browserSyncFunc = () => {
   browserSync.init(browserSyncOption);
 }
@@ -141,13 +147,13 @@ const browserSyncOption = {
   reloadOnRestart: true,
 }
 
-//リロード
+//リロード処理を実行する関数
 const browserSyncReload = (done) => {
   browserSync.reload();
   done();
 }
 
-//ファイル監視
+//ファイルの変更を監視
 const watchFiles = () => {
   watch(srcPath.css, series(cssSass, browserSyncReload))
   watch(srcPath.js, series(jsBabel, browserSyncReload))
@@ -155,5 +161,9 @@ const watchFiles = () => {
   watch(srcPath.php, series(browserSyncReload))
 }
 
+//処理をまとめて実行
+
+//gulp default
 exports.default = series(series(cssSass, jsBabel, imgImagemin), parallel(watchFiles, browserSyncFunc));
+//gulp build
 exports.build = series(cssSass, jsBabel, imgImagemin);
