@@ -25,7 +25,7 @@ const imageminSvgo = require("imagemin-svgo");
 const browserSync = require("browser-sync");
 
 
-//ブラウザ対応条件
+//postcss-cssnext ブラウザ対応条件 prefix 自動付与
 const browsers = [
   'last 2 versions',
   '> 5%',
@@ -55,9 +55,9 @@ const destPath = {
 //sass
 const cssSass = () => {
   return src(srcPath.css) //コンパイル元
-    .pipe(sourcemaps.init())        //gulp-sourcemapsを初期化
+    .pipe(sourcemaps.init())//gulp-sourcemapsを初期化
     .pipe(
-      plumber(                      //エラーが出ても処理を止めない
+      plumber(              //エラーが出ても処理を止めない
         {
           errorHandler: notify.onError('Error:<%= error.message %>')
           //エラー出力設定
@@ -65,17 +65,16 @@ const cssSass = () => {
       )
     )
     .pipe(sass({ outputStyle: 'expanded' }))
-    .pipe(postcss([mqpacker()]))
-    .pipe(postcss([cssnext(browsers)]))       //PostCSS
-    .pipe(dest(destPath.css))                  //コンパイル先
+    .pipe(postcss([mqpacker()])) // メディアクエリを圧縮
+    .pipe(postcss([cssnext(browsers)]))//cssnext
+    .pipe(sourcemaps.write('/maps'))  //ソースマップの出力
+    .pipe(dest(destPath.css))         //コンパイル先
     .pipe(cleanCSS()) // CSS圧縮
     .pipe(
       rename({
         extname: '.min.css' //.min.cssの拡張子にする
       })
   )
-    .pipe(sourcemaps.write('/maps'))
-    .pipe(dest(destPath.css))
 }
 
 
@@ -83,17 +82,17 @@ const cssSass = () => {
 const jsBabel = () => {
   return src(srcPath.js)
     .pipe(
-      plumber(
+      plumber(              //エラーが出ても処理を止めない
         {
           errorHandler: notify.onError('Error: <%= error.message %>')
         }
       )
     )
     .pipe(babel({
-      presets: ['@babel/preset-env']
+      presets: ['@babel/preset-env']  // gulp-babelでトランスパイル
     }))
     .pipe(dest(destPath.js))
-    .pipe(uglify())
+    .pipe(uglify()) // js圧縮
     .pipe(
       rename(
         { extname: '.min.js' }
