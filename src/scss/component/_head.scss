@@ -1,0 +1,39 @@
+
+/* -------------------------------------------
+  共通ビジュアル
+ */
+.contents-header {
+  background-image:url(/dist/img/common/head-back-pc.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 320px;
+  width: 100%;
+
+  @include mq('sp') {
+    background: url(/dist/img/common/head-back-sp.png) center / cover no-repeat;
+      height: 3.3rem;
+  }
+
+}
+
+
+.deadline {
+  width: 100%;
+  text-align: center;
+  background-color: #ffec27;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 48px;
+
+    @include mq('sp') {
+      font-size: 0.2834rem;
+      line-height: 0.88rem;
+    }
+  span {
+    font-size: 32px;
+    @include mq('sp') {
+      font-size: 0.48rem;
+    }
+  }
+}

@@ -1,0 +1,177 @@
+/* -------------------------------------------
+  initialize
+ */
+@charset "utf-8";
+
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+
+ul li {
+  list-style: none;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+
+/* -------------------------------------------
+  base
+ */
+
+html {
+  font-size:16px;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  font-family: 'Noto Sans Japanese', serif;
+}
+
+.text {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+
+  @include mq('sp') {
+    font-size: 0.28rem;
+  }
+}
+.lg-text {
+  font-size: 32px;
+
+  @include mq('sp') {
+    font-size: 0.38rem;
+  }
+}
+
+
+.btn {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  width: 486px;
+  padding: 10px 0;
+  border-radius:55px;
+  display: inline-block;
+
+  @include mq('sp') {
+    width: 6.76rem;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+
+
+//hidden
+
+.pc-hidden {
+  display: none;
+
+  @include mq('sp') {
+    display: block;
+  }
+}
+.sp-hidden {
+  display: block;
+
+    @include mq('sp') {
+      display: none;
+  }
+}

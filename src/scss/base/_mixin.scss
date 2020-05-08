@@ -1,0 +1,22 @@
+$layout-width-inner: 1024px;
+$breakpoints: (
+  "sp": "screen and (max-width: 750px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})"
+);
+
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@function get_vw($size, $viewport:320){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vw($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}

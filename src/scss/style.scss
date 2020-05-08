@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+
+@import "base/mixin";
+@import "base/setting";
+@import "page/login";
+@import "component/head";
+@import "component/challenge";
+
+
+//雛形--------------------------------
+
+
+
+.ranking {
+height: 600px;
+width: 100%;
+background:yellow;
+}
+
+.last-month {
+height: 300px;
+width: 100%;
+background:#eee;
+}
+.application {
+height: 500px;
+width: 100%;
+background:pink;
+}
+
+.share-bth {
+height: 300px;
+width: 100%;
+background:#eee;
+}
+
+//---------------------------------
