@@ -68,6 +68,14 @@ const cssSass = () => {
     .pipe(postcss([mqpacker()]))
     .pipe(postcss([cssnext(browsers)]))       //PostCSS
     .pipe(dest(destPath.css))                  //コンパイル先
+    .pipe(cleanCSS()) // CSS圧縮
+    .pipe(
+      rename({
+        extname: '.min.css' //.min.cssの拡張子にする
+      })
+  )
+    .pipe(sourcemaps.write('/maps'))
+    .pipe(dest(destPath.css))
 }
 
 
@@ -126,7 +134,7 @@ const browserSyncFunc = () => {
   browserSync.init(browserSyncOption);
 }
 const browserSyncOption = {
-  proxy: 'http://192.168.11.15:10009/',       //環境によって変更する
+  proxy: 'http://localhost/template/gulp-template/',       //環境によって変更する
   open: true,
   watchOptions: {
     debounceDelay: 1000

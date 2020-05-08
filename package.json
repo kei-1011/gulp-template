@@ -1,7 +1,7 @@
 {
   "name": "template-html",
   "version": "1.0.0",
-  "description": "",
+  "description": "## npm 初期化",
   "main": "gulpfile.js",
   "scripts": {
     "clean": "rimraf dist/**/*",
@@ -32,6 +32,15 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.1.0",
-    "postcss-cssnext": "^3.1.0"
-  }
+    "postcss-cssnext": "^3.1.0",
+    "rimraf": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kei-1011/gulp-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kei-1011/gulp-template/issues"
+  },
+  "homepage": "https://github.com/kei-1011/gulp-template#readme"
 }
