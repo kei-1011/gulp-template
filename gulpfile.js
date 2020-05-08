@@ -30,6 +30,8 @@ const imageminSvgo = require("imagemin-svgo");
 //ファイル監視
 const browserSync = require("browser-sync");
 
+//ftpアップロード
+const ftp = require("vinyl-ftp");
 
 //postcss-cssnext ブラウザ対応条件 prefix 自動付与
 const browsers = [
@@ -153,6 +155,32 @@ const browserSyncReload = (done) => {
   done();
 }
 
+// アカウント情報の定義
+const connect = ftp.create({
+  host: 'sv3.html.xdomain.ne.jp',
+  user: 'kaylife.html.xdomain.jp',
+  password: 'kouhei3387',
+})
+
+// アップロードするファイルパス
+const ftpUploadFiles = [
+  'dist/**',
+  'dist/css/**',
+  'dist/js/**',
+  'dist/img/**',
+  'index.html'
+]
+
+// アップロード先ディレクトリパス
+const remoteDistDir = '/'
+
+const vinylFtp = () => {
+  return src(ftpUploadFiles, { buffer: false })
+  .pipe(connect.newerOrDifferentSize(remoteDistDir))
+  .pipe(connect.dest(remoteDistDir))
+}
+
+
 //ファイルの変更を監視
 const watchFiles = () => {
   watch(srcPath.css, series(cssSass, browserSyncReload))
@@ -166,4 +194,5 @@ const watchFiles = () => {
 //gulp default
 exports.default = series(series(cssSass, jsBabel, imgImagemin), parallel(watchFiles, browserSyncFunc));
 //gulp build
-exports.build = series(cssSass, jsBabel, imgImagemin);
+exports.build = series(cssSass, jsBabel, imgImagemin)
+exports.ftp = series(vinylFtp)
