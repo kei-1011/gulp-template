@@ -157,9 +157,9 @@ const browserSyncReload = (done) => {
 
 // アカウント情報の定義
 const connect = ftp.create({
-  host: 'sv3.html.xdomain.ne.jp',
-  user: 'kaylife.html.xdomain.jp',
-  password: 'kouhei3387',
+  host: '********',
+  user: '********',
+  password: '********',
 })
 
 // アップロードするファイルパス
